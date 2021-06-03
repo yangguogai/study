@@ -22,21 +22,23 @@ public class AccountApplyServiceImpl implements AccountApplyService {
 		return accountApplyMapper.selectByPrimaryKey(id);
 	}
 
-	//
+	// 存取或者修改
 	@Override
 	public void saveOrUpdate(AccountApply accountApply) {
-		
-		if(accountApply.getId()!=null) {
+
+		if (accountApply.getId() != null) {
 			accountApplyMapper.updateByPrimaryKey(accountApply);
-		}else {
-			
+		} else {
+			accountApplyMapper.insert(accountApply);
 		}
 
 	}
 
+	// 删除一个id信息
 	@Override
 	public void deleteById(long id) {
-		// TODO Auto-generated method stub
+
+		accountApplyMapper.deleteByPrimaryKey(id);
 
 	}
 
