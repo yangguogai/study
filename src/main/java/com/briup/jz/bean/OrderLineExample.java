@@ -505,6 +505,12 @@ public class OrderLineExample {
         protected Criteria() {
             super();
         }
+
+		public void andStatusLike(String string) {
+			// TODO Auto-generated method stub
+			
+		}
+
     }
 
     /**

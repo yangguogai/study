@@ -219,8 +219,8 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andIdGreaterThanOrEqualTo(Object object) {
+            addCriterion("id >=", object, "id");
             return (Criteria) this;
         }
 
@@ -765,6 +765,11 @@ public class OrderExample {
         protected Criteria() {
             super();
         }
+
+		public void andNameLike(Object object) {
+			// TODO Auto-generated method stub
+			
+		}
     }
 
     /**

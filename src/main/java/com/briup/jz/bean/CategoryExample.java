@@ -264,8 +264,8 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andNameEqualTo(String string) {
+            addCriterion("name =", string, "name");
             return (Criteria) this;
         }
 

@@ -58,4 +58,23 @@ public class CategoryServiceImpl implements ICategoryService {
 		
 	}
 
+	@Override
+	public void save(Category category) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Category> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Category findById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
