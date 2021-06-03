@@ -17,6 +17,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Autowired
 	private CategoryMapper categoryMapper;
 
+	//保存或者更新操作
 	@Override
 	public void saveOrUpdate(Category category) throws CustomerException {
 		if(category.getId()!=null) {
@@ -33,6 +34,8 @@ public class CategoryServiceImpl implements ICategoryService {
 		}
 	}
 
+	
+	//根据名字模糊查询
 	@Override
 	public List<Category> query(String name) {
 		CategoryExample example = new CategoryExample();
@@ -43,6 +46,8 @@ public class CategoryServiceImpl implements ICategoryService {
 		return list;
 	}
 
+	
+	//根据id进行删除
 	@Override
 	public void deleteById(long id) throws CustomerException {
 		Category category = categoryMapper.selectByPrimaryKey(id);
