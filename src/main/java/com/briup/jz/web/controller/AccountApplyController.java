@@ -29,22 +29,22 @@ public class AccountApplyController {
 
 	// 根据id查询银行账户充值提现信息
 	@ApiOperation(value = "查询所有银行账户信息")
-	@GetMapping("queryAllAccount")
+	@GetMapping("query")
 	public Message query(long id) {
 		AccountApply list = accountApplyService.queryAccountApplyByid(id);
 		return MessageUtil.success(list);
 	}
-	
-	//保存或者更新
-	@ApiOperation(value="保存或更新资银行卡类信息")
-	@ApiImplicitParam(name="name",value = "栏目名称",paramType = "form",required = true)
+
+	// 保存或者更新
+	@ApiOperation(value = "保存或更新资银行卡类信息")
+	@ApiImplicitParam(name = "name", value = "栏目名称", paramType = "form", required = true)
 	@PostMapping("/saveOrUpdate")
 	public Message saveOrUpdate(AccountApply accountApply) {
 		accountApplyService.saveOrUpdate(accountApply);
 		return MessageUtil.success("更新成功");
 	}
-	
-	//删除一个id信息
+
+	// 删除一个id信息
 	@ApiOperation(value = "删除银行账户信息")
 	@PostMapping("/deleteById")
 	public Message deleteById(long id) {
