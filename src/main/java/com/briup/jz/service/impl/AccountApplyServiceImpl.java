@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.briup.jz.bean.AccountApply;
-import com.briup.jz.bean.AccountApplyExample;
 import com.briup.jz.dao.AccountApplyMapper;
 import com.briup.jz.service.AccountApplyService;
 
