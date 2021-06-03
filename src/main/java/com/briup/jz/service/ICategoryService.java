@@ -7,7 +7,7 @@ import com.briup.jz.utils.CustomerException;
 
 public interface ICategoryService {
 	
-	//存储或者更新一个
+	//存储或者更新一个....
 	void saveOrUpdate(Category category) throws CustomerException;
 	
 	//根据名字模糊查询
