@@ -40,7 +40,7 @@ public class CertificationApplyController {
 		return MessageUtil.success(list);
 	}
 
-	// 根据id删除
+	// 根据id删除。。
 	@ApiOperation(value = "通过id删除")
 	@GetMapping("/deleteById")
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true), })
