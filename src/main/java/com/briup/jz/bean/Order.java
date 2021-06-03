@@ -307,4 +307,15 @@ public class Order implements Serializable {
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
+
+	
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Long getName1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

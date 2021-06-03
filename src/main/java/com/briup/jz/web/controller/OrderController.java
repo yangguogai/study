@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.jz.bean.Category;
-import com.briup.jz.service.ICategoryService;
+import com.briup.jz.bean.Order;
+import com.briup.jz.service.OrderService;
 import com.briup.jz.utils.Message;
 import com.briup.jz.utils.MessageUtil;
 
@@ -21,19 +21,19 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description="资讯分类")
+@Api(description="订单分类")
 @Validated
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/order")
+public class OrderController {
 
     @Autowired
-    private ICategoryService categoryService;
+    private OrderService orderService;
 
-    @ApiOperation(value = "查询所有资讯分类")
+    @ApiOperation(value = "查询所有订单分类")
     @GetMapping("query")
     public Message query(String name){
-        List<Category> list = categoryService.query(name);
+        List<Order> list = orderService.query(name);
         return MessageUtil.success(list);
     }
 
@@ -43,11 +43,11 @@ public class CategoryController {
         @ApiImplicitParam(name="id",value = "主键",paramType = "form", required=true),
     })
     public Message deleteById(@NotNull Long id){
-        categoryService.deleteById(id);
+       orderService.deleteById(id);
         return MessageUtil.success("删除成功");
     }
 
-    @ApiOperation(value = "保存或更新资讯分类信息")
+    @ApiOperation(value = "保存或更新订单分类信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value = "主键",paramType = "form"),
             @ApiImplicitParam(name="name",value = "栏目名称",paramType = "form",required = true),
@@ -56,8 +56,8 @@ public class CategoryController {
             @ApiImplicitParam(name="parentId",value = "父栏目id",paramType = "form"),
     })
     @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(Category category){
-        categoryService.saveOrUpdate(category);
+    public Message saveOrUpdate(Order order){
+       orderService.saveOrUpdate(order);
         return MessageUtil.success("更新成功");
     }
 }

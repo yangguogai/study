@@ -1,6 +1,9 @@
 package com.briup.jz.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
 
 public class OrderComment implements Serializable {
     /**
@@ -208,4 +211,20 @@ public class OrderComment implements Serializable {
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
+
+	public List<OrderComment> query(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteById(@NotNull Long id2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void saveOrUpdate(OrderComment orderComment) {
+		// TODO Auto-generated method stub
+		
+	}
 }
