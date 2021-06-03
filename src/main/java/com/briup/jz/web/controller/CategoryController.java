@@ -30,6 +30,7 @@ public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
 
+    //根据名字模糊查询所有分类
     @ApiOperation(value = "查询所有资讯分类")
     @GetMapping("query")
     public Message query(String name){
@@ -37,6 +38,7 @@ public class CategoryController {
         return MessageUtil.success(list);
     }
 
+    //根据id删除
     @ApiOperation(value = "通过id删除")
     @GetMapping("deleteById")
     @ApiImplicitParams({
@@ -47,6 +49,8 @@ public class CategoryController {
         return MessageUtil.success("删除成功");
     }
 
+    
+    //保存或者更新
     @ApiOperation(value = "保存或更新资讯分类信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value = "主键",paramType = "form"),
