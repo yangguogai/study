@@ -16,7 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description = "银行顾客分类相关接口")
+@Api(description = "账户顾客分类相关接口")
 @Validated
 @RestController
 @RequestMapping("/accountCustomer")
