@@ -15,7 +15,7 @@ public class AccountApplyServiceImpl implements AccountApplyService {
 	@Autowired
 	private AccountApplyMapper accountApplyMapper;
 
-	// 根据id查询银行账户充值提现信息
+	// 根据id查询银行账户充值提现信息123
 	@Override
 	public AccountApply queryAccountApplyByid(long id) {
 
