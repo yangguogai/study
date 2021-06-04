@@ -16,9 +16,10 @@ import com.briup.jz.utils.MessageUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description = "账户分类相关接口")
+@Api(description = "账户变动申请表（提现）相关接口")
 @Validated
 @RestController
 @RequestMapping("/accountApplay")
@@ -27,11 +28,15 @@ public class AccountApplyController {
 	@Autowired
 	private AccountApplyService accountApplyService;
 
-	// 根据id查询银行账户充值提现信息
-	@ApiOperation(value = "查询所有银行账户信息")
+	// 查询账户变动申请表信息
+	@ApiOperation(value = "查询账户变动申请表信息")
 	@GetMapping("query")
-	public Message query(long id) {
-		AccountApply list = accountApplyService.queryAccountApplyByid(id);
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="AccountType",value="申请类型（提现、充值）",paramType = "from"),
+		@ApiImplicitParam(name="status",value="申请状态")
+	})
+	public Message query(String AccountType,String status) {
+		List<AccountApply> list = accountApplyService.query(AccountType, status);
 		return MessageUtil.success(list);
 	}
 
