@@ -20,14 +20,24 @@ public class CategoryServiceImpl implements ICategoryService {
 	//保存或者更新操作
 	@Override
 	public void saveOrUpdate(Category category) throws CustomerException {
+		
 		if(category.getId()!=null) {
+			
 			categoryMapper.updateByPrimaryKey(category);
+			
 		} else {
+			
 			// 判断是否有同名的分类，如果有抛出异常
+			
 			CategoryExample example = new CategoryExample();
+			
 			example.createCriteria().andNameEqualTo(category.getName());
+			
+			
 			List<Category> list = categoryMapper.selectByExample(example);
+			
 			if(list.size()>0) {
+				
 				throw new CustomerException("同名的分类已存在");
 			}
 			categoryMapper.insert(category);
