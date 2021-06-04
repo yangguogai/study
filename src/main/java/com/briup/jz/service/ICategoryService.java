@@ -6,14 +6,12 @@ import com.briup.jz.bean.Category;
 import com.briup.jz.utils.CustomerException;
 
 public interface ICategoryService {
-<<<<<<< HEAD
     void save(Category category) ;
 	  List<Category> findAll();
 	  Category findById(long id);
-=======
+
 	
-	//存储或者更新一个....
->>>>>>> cb5b5e575617878e352582929adbe7aa5c25424e
+	//存储或者更新
 	void saveOrUpdate(Category category) throws CustomerException;
 	
 	//根据名字模糊查询
