@@ -2,8 +2,6 @@ package com.briup.jz.web.controller;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,42 +19,43 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description="资讯分类相关接口")
+@Api(description="资讯相关接口")
 @Validated
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
-	 @Autowired
-	    private IArticleService articleService;
-
-	    @ApiOperation(value = "查询所有资讯分类")
-	    @GetMapping("query")
-	    public Message query(String name){
-	        List<Article> list = articleService.query(name);
-	        return MessageUtil.success(list);
-	    }
-
-	    @ApiOperation(value = "通过id删除")
-	    @GetMapping("deleteById")
-	    @ApiImplicitParams({
-	        @ApiImplicitParam(name="id",value = "主键",paramType = "query", required=true),
-	    })
-	    public Message deleteById(@NotNull Long id){
-	        articleService.deleteById(id);
-	        return MessageUtil.success("删除成功");
-	    }
-
-	    @ApiOperation(value = "保存或更新资讯分类信息")
-	    @ApiImplicitParams({
-	            @ApiImplicitParam(name="id",value = "主键",paramType = "form"),
-	            @ApiImplicitParam(name="name",value = "栏目名称",paramType = "form",required = true),
-	            @ApiImplicitParam(name="description",value = "栏目描述",paramType = "form"),
-	            @ApiImplicitParam(name="no",value = "序号",paramType = "form"),
-	            @ApiImplicitParam(name="parentId",value = "父栏目id",paramType = "form"),
-	    })
-	    @PostMapping("saveOrUpdate")
-	    public Message saveOrUpdate(Article article){
-	        articleService.saveOrUpdate(article);
-	        return MessageUtil.success("更新成功");
-	    }
+	@Autowired
+	private IArticleService articleService;
+	
+	@ApiOperation("多条件符合查询")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="title",value="文章标题",paramType="form"),
+		@ApiImplicitParam(name="status",value="状态[未审核、通过、不通过、推荐]",paramType="form"),
+		@ApiImplicitParam(name="categoryId",value="资讯分类id",paramType="form")
+	})
+	@GetMapping("query")
+    public Message query(String title,String status,Long categoryId){
+		List<Article> list = articleService.query(title, status, categoryId);
+        return MessageUtil.success(list);
+    }
+	
+	@ApiOperation("保存或更新")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="id",value="编号[更新的时候需要填写]",paramType="form"),
+		@ApiImplicitParam(name="title",value="文章标题", required=true, paramType="form"),
+		@ApiImplicitParam(name="content",value="文章主体内容",required=true,paramType="form"),
+		@ApiImplicitParam(name="cover",value="缩略图",required=true,paramType="form"),
+		@ApiImplicitParam(name="categoryId",value="资讯分类id",required=true,paramType="form")
+	})
+	@PostMapping("saveOrUpdate")
+    public Message saveOrUpdate(Long id,String title,String content,String cover,Long categoryId) {
+		Article article = new Article();
+		article.setId(id);
+		article.setTitle(title);
+		article.setCategoryId(categoryId);
+		article.setContent(content);
+		article.setCover(cover);
+		articleService.saveOrUpdate(article);
+    	return MessageUtil.success("操作成功");
+    }
 }

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.briup.jz.bean.AccountApply;
+import com.briup.jz.bean.AccountApplyExample;
 import com.briup.jz.dao.AccountApplyMapper;
 import com.briup.jz.service.AccountApplyService;
+import com.briup.jz.utils.CustomerException;
 
 @Service
 public class AccountApplyServiceImpl implements AccountApplyService {
@@ -36,10 +38,26 @@ public class AccountApplyServiceImpl implements AccountApplyService {
 
 	// 删除一个id信息
 	@Override
-	public void deleteById(long id) {
-
+	public void deleteById(long id) throws CustomerException {
+		AccountApply accountApply = accountApplyMapper.selectByPrimaryKey(id);
+		if (accountApply == null) {
+			throw new CustomerException("要删除的分类信息不存在");
+		}
 		accountApplyMapper.deleteByPrimaryKey(id);
+	}
 
+	// 根据提现、重置、审核状态去模糊查询记录
+	@Override
+	public List<AccountApply> query(String ApplyType, String status) {
+		AccountApplyExample example = new AccountApplyExample();
+		if (ApplyType != null) {
+			example.createCriteria().andApplyTypeLike("%" + ApplyType + "%");
+		}
+		if (status != null) {
+			example.createCriteria().andApplyTypeLike("%" + status + "%");
+		}
+		List<AccountApply> list = accountApplyMapper.selectByExample(example);
+		return list;
 	}
 
 }
